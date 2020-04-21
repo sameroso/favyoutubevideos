@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {selectID} from '../actions'
-
+import {Link} from 'react-router-dom';
 import './YoutubeList.css'
 
 class YoutubeList extends React.Component{
@@ -25,7 +25,7 @@ class YoutubeList extends React.Component{
                                     <div className="row d-flex">
                                         <div className="mx-auto">
                                             <button onClick={()=>this.selectId(video.id.videoId)} type="button" class="btn btn-danger mx-3">Select</button>
-                                            <button type="button" class="btn btn-danger mx-3">Detail </button>
+                                            <Link to={`/videoDetail/${video.id.videoId}`}><button type="button" class="btn btn-danger mx-3">Detail </button></Link>
                                         </div>
                                     </div>
                                 </div>
