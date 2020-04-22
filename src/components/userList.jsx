@@ -1,60 +1,52 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {selectID} from '../actions'
+import {selectID} from '../actions';
 import {Link} from 'react-router-dom';
-import {fetchVideoList} from '../actions'
+import {fetchVideoList} from '../actions';
+import SingleElement from './SingleElement';
+import VideoPlayer from './VideoPlayer';
 
 class YoutubeList extends React.Component{
     componentDidMount() {
         this.props.fetchVideoList()
+        this.props.selectID("");
     }
     selectId(id) {
         this.props.selectID(id);
     }
     renderList = () => {
-        return this.props.videosFromYoutube.items.map(
+        console.log(this.props);
+        return this.props.userList.map(
             (video) => {
                 return (
-                    <React.Fragment key={video.id.videoId}>
-                        <div className="py-2">
-                            <div className="py-3 row custom-border">
-                                <div className="col-12 col-md-6 col-lg-4 mx-auto d-flex pb-3">
-                                    <img className="mx-auto" src={video.snippet.thumbnails.medium.url}/>
-                                </div>
-                                <div className="col-12 col-md-6 col-lg-8 mx-auto my-auto">
-                                    <div className="row d-flex">
-                                        <h5 className="text-center mx-auto">{video.snippet.title}</h5>
-                                    </div>
-                                    <div className="row d-flex">
-                                        <div className="mx-auto">
-                                            <button onClick={()=>this.selectId(video.id.videoId)} type="button" class="btn btn-danger mx-3">Select</button>
-                                            <Link to={`/videoDetail/${video.id.videoId}`}><button type="button" class="btn btn-danger mx-3">Detail </button></Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </React.Fragment>
-
+                    <SingleElement videoId={video.videoId}/>
                 );
             }
         );
     }
     render(){
-        if(!this.props.videosFromYoutube){
+        if(this.props.userList.length === 0){
             return(
                 null
             );
         }else{
             return(
-                <div className="container">{this.renderList()}</div>
+                <React.Fragment>
+                    <VideoPlayer videoId={this.props.idSelected}/>
+                    <div className="container">{this.renderList()}</div>
+                </React.Fragment>
             );
         }
     }
 }
 
 const mapStateToProps = state => {
-    return {videosFromYoutube: state.YoutubeList.data}
+    console.log(state)
+    return {
+        userList: Object.values(state.userList).filter((el) => el.userId == state.authState.userId), 
+        userId:state.authState.userId,
+        idSelected: state.idSelectedVideo
+    }
 }
 
 export default connect(mapStateToProps, {selectID, fetchVideoList})(YoutubeList)

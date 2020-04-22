@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {connect} from 'react-redux';
-import {addVideo} from '../actions'
+import {addVideo} from '../actions';
+import {Link} from 'react-router-dom';
 
 import {youTubeSearchSingleVideo} from '../actions'
 import VideoPlayer from './VideoPlayer';
@@ -39,8 +40,8 @@ class VideoDetail extends React.Component{
                             <div className="row">
                                 <div className="mx-auto">
                                     <button onClick={this.addVideo} type="button" className="btn btn-outline-primary mx-2 my-2">Save to My List</button>
-                                    <button type="button" className="btn btn-outline-secondary mx-2 my-2">Search More Videos</button>
-                                    <button type="button" className="btn btn-outline-success mx-2 my-2">go to my List</button>
+                                    <Link to="/"><button type="button" className="btn btn-outline-secondary mx-2 my-2">Search More Videos</button></Link>
+                                    <Link to="/mylist"><button type="button" className="btn btn-outline-success mx-2 my-2">go to my List</button></Link>
                                 </div>
                             </div>
                             <div className="row">

@@ -41,11 +41,11 @@ export const selectID = (id) => {
 }
 
 export const addVideo = (userId, videoId) => async dispatch=>{
-    const response = await jsonServer.post('',{videoId,userId})
+    const response = await jsonServer.post('/userList',{videoId,userId})
    dispatch({type:"VIDEO_POST", payload:response.data})
 }
 
 export const fetchVideoList = () => async dispatch=>{
-    const response = await jsonServer.get('')
+    const response = await jsonServer.get('/userList')
    dispatch({type:"USER_DATA", payload:response.data})
 }

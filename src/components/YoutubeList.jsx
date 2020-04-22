@@ -2,9 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {selectID} from '../actions'
 import {Link} from 'react-router-dom';
-import './YoutubeList.css'
+import './YoutubeList.css';
 
 class YoutubeList extends React.Component{
+    componentDidMount(){
+        this.props.selectID("");
+    }
     selectId(id) {
         this.props.selectID(id);
     }
