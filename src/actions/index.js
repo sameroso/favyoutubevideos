@@ -1,4 +1,16 @@
-import youTube from '../api/youtube'
+import youTube from '../api/youtube';
+import jsonServer from '../api/jsonServer';
+export const signIn = (id) => {
+    return {
+        type:'SIGN_IN',
+        payload: id
+    }
+}
+export const signOut = () => {
+    return {
+        type:'SIGN_OUT',
+    }
+}
 
 export const youTubeSearch = (term) => async dispatch=>{
      const response = await youTube.get('/search',{
@@ -26,4 +38,14 @@ export const youTubeSearchSingleVideo = (id) => async dispatch=>{
 
 export const selectID = (id) => {
     return{type:"CLICKED", payload:id};
+}
+
+export const addVideo = (userId, videoId) => async dispatch=>{
+    const response = await jsonServer.post('',{videoId,userId})
+   dispatch({type:"VIDEO_POST", payload:response.data})
+}
+
+export const fetchVideoList = () => async dispatch=>{
+    const response = await jsonServer.get('')
+   dispatch({type:"USER_DATA", payload:response.data})
 }

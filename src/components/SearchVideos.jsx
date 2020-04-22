@@ -8,6 +8,9 @@ import VideoPlayer from './VideoPlayer'
 
 
 class SearchVideos extends React.Component{
+    componentDidMount(){
+        
+    }
     render() {
         return(
             <React.Fragment>

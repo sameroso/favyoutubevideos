@@ -8,13 +8,10 @@ class VideoPlayer extends React.Component {
             return null
         }else{
             return(
-                <div className="d-flex py-3">
+                <div className="d-flex my-3 mx-auto embed-responsive embed-responsive-16by9">
                     <iframe
-                        className="mx-auto"
-                        width="560"
-                        height="315"
+                        className="mx-auto embed-responsive-item"
                         src={`https://www.youtube.com/embed/${this.props.videoId}`}
-                        frameBorder="0"
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     ></iframe>

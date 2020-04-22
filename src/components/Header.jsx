@@ -1,5 +1,7 @@
 import React from "react";
 
+import GoogleAuth from './googleLogin'
+
 class Header extends React.Component {
     render() {
         return (
@@ -32,7 +34,7 @@ class Header extends React.Component {
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">
-                                    Link
+                                    <GoogleAuth/>
                                 </a>
                             </li>
                         </ul>
