@@ -3,8 +3,23 @@ import {connect} from 'react-redux';
 import {selectID} from '../actions'
 import {Link} from 'react-router-dom';
 import './YoutubeList.css';
+import {addVideo} from '../actions';
 
 class YoutubeList extends React.Component{
+    addVideo = (index) => {
+        console.log(this.props.videosFromYoutube.items[index]);
+        this.props.addVideo(this.props.userId,this.props.videosFromYoutube.items[index].id.videoId)
+    }
+    renderbutton(index) {
+        console.log(this.props)
+        if(!this.props.isSignedIn){
+            return null
+        }else{
+           return (
+            <button onClick={()=>this.addVideo(index)} type="button" className="btn btn-outline-primary mx-2 my-2">Save to My List</button>
+           );
+        }
+    }
     componentDidMount(){
         this.props.selectID("");
     }
@@ -13,7 +28,8 @@ class YoutubeList extends React.Component{
     }
     renderList = () => {
         return this.props.videosFromYoutube.items.map(
-            (video) => {
+            (video,index) => {
+                console.log(index)
                 return (
                     <React.Fragment key={video.id.videoId}>
                         <div className="py-2">
@@ -27,6 +43,7 @@ class YoutubeList extends React.Component{
                                     </div>
                                     <div className="row d-flex">
                                         <div className="mx-auto">
+                                            {this.renderbutton(index)}
                                             <button onClick={()=>this.selectId(video.id.videoId)} type="button" class="btn btn-danger mx-3">Select</button>
                                             <Link to={`/videoDetail/${video.id.videoId}`}><button type="button" class="btn btn-danger mx-3">Detail </button></Link>
                                         </div>
@@ -54,7 +71,11 @@ class YoutubeList extends React.Component{
 }
 
 const mapStateToProps = state => {
-    return {videosFromYoutube: state.YoutubeList.data}
+    return {
+        videosFromYoutube: state.YoutubeList.data,
+        isSignedIn:state.authState.isSignedIn,
+        userId:state.authState.userId
+    }
 }
 
-export default connect(mapStateToProps, {selectID})(YoutubeList)
+export default connect(mapStateToProps, {selectID, addVideo})(YoutubeList)

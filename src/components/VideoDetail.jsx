@@ -12,6 +12,16 @@ class VideoDetail extends React.Component{
     componentDidMount() {
         this.props.youTubeSearchSingleVideo(this.props.match.params.id);
     }
+    renderbutton() {
+        console.log(this.props)
+        if(!this.props.isSignedIn){
+            return null
+        }else{
+           return (
+            <button onClick={this.addVideo} type="button" className="btn btn-outline-primary mx-2 my-2">Save to My List</button>
+           );
+        }
+    }
     addVideo = () => {
         this.props.addVideo(this.props.userId,this.props.video.items[0].id)
     }
@@ -39,7 +49,7 @@ class VideoDetail extends React.Component{
                             </div>
                             <div className="row">
                                 <div className="mx-auto">
-                                    <button onClick={this.addVideo} type="button" className="btn btn-outline-primary mx-2 my-2">Save to My List</button>
+                                    {this.renderbutton()}
                                     <Link to="/"><button type="button" className="btn btn-outline-secondary mx-2 my-2">Search More Videos</button></Link>
                                     <Link to="/mylist"><button type="button" className="btn btn-outline-success mx-2 my-2">go to my List</button></Link>
                                 </div>

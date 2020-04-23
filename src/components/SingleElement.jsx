@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import youTube from '../api/youtube';
 import {selectID} from '../actions';
 import {connect} from 'react-redux';
+import VideoDelete from "./VideoDelete"
 
 class SingleElement extends React.Component {
     state={videoInfo:{}}
@@ -17,6 +18,9 @@ class SingleElement extends React.Component {
          })
          .then((response) => this.setState({videoInfo: response.data.items}))
         
+    }
+    delete=() =>{
+        this.setState({videoInfo:{}})
     }
     selectId(id) {
         this.props.selectID(id);
@@ -38,6 +42,10 @@ class SingleElement extends React.Component {
                                 <div className="mx-auto">
                                     <button onClick={()=>this.selectId(this.state.videoInfo[0].id)} type="button" class="btn btn-danger mx-3">Select</button>
                                     <Link to={`/videoDetail/${this.state.videoInfo[0].id}`}><button type="button" class="btn btn-danger mx-3">Detail </button></Link>
+                                    <VideoDelete 
+                                        videoId={this.state.videoInfo[0].id}
+                                        videoDelete={this.delete}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -51,7 +59,6 @@ class SingleElement extends React.Component {
         if(!this.state.videoInfo[0]){
             return null;
         }else{
-            console.log("batata")
             return (
                 <div>{this.renderList()}</div>
             ); 

@@ -41,11 +41,17 @@ export const selectID = (id) => {
 }
 
 export const addVideo = (userId, videoId) => async dispatch=>{
-    const response = await jsonServer.post('/userList',{videoId,userId})
+    const response = await jsonServer.post('',{videoId,userId,ID:(videoId+userId)})
    dispatch({type:"VIDEO_POST", payload:response.data})
 }
 
 export const fetchVideoList = () => async dispatch=>{
-    const response = await jsonServer.get('/userList')
+    const response = await jsonServer.get('')
    dispatch({type:"USER_DATA", payload:response.data})
 }
+
+export const deleteVideo = (videoId) => async dispatch=>{
+    const response = await jsonServer.delete(`/ID/${videoId}*`)
+   dispatch({type:"VIDEO_POST", payload:response.data})
+}
+

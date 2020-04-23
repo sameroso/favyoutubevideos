@@ -1,5 +1,5 @@
-import React from "react";
-
+import React from 'react';
+import {Link} from 'react-router-dom'
 import GoogleAuth from './googleLogin'
 
 class Header extends React.Component {
@@ -28,9 +28,14 @@ class Header extends React.Component {
                     >
                         <ul className="navbar-nav">
                             <li className="nav-item active">
-                                <a className="nav-link" href="#">
-                                    Home <span className="sr-only">(current)</span>
-                                </a>
+                                <Link to="/" className="nav-link">
+                                    Search Videos <span className="sr-only">(current)</span>
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/mylist" className="nav-link">
+                                    My List <span className="sr-only">(current)</span>
+                                </Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">

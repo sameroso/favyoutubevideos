@@ -17,17 +17,22 @@ class YoutubeList extends React.Component{
     renderList = () => {
         console.log(this.props);
         return this.props.userList.map(
-            (video) => {
+            (video, index) => {
                 return (
-                    <SingleElement videoId={video.videoId}/>
+                    <SingleElement 
+                        videoId={video.videoId}
+                        index= {index}
+                    />
                 );
             }
         );
     }
     render(){
-        if(this.props.userList.length === 0){
+        if(!this.props.userId){
+            return<div>you need to login</div>
+        }else if(this.props.userList.length === 0){
             return(
-                null
+                <div>You have no videos on this list</div>
             );
         }else{
             return(
