@@ -15,13 +15,11 @@ class YoutubeList extends React.Component{
         this.props.selectID(id);
     }
     renderList = () => {
-        console.log(this.props);
         return this.props.userList.map(
-            (video, index) => {
+            (video) => {
                 return (
                     <SingleElement 
                         videoId={video.videoId}
-                        index= {index}
                     />
                 );
             }
