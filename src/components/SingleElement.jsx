@@ -55,7 +55,6 @@ class SingleElement extends React.Component {
         );
     }
     render() { 
-        console.log(this.state)
         if(!this.state.videoInfo[0]){
             return null;
         }else{

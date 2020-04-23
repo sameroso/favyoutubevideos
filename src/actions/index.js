@@ -51,7 +51,7 @@ export const fetchVideoList = () => async dispatch=>{
 }
 
 export const deleteVideo = (videoId) => async dispatch=>{
-    const response = await jsonServer.delete(`/ID/${videoId}*`)
+    await jsonServer.delete(`/ID/${videoId}*`)
    dispatch({type:"VIDEO_DELETE", payload:videoId})
 }
 
