@@ -19,16 +19,18 @@ class SingleElement extends React.Component {
          .then((response) => this.setState({videoInfo: response.data.items}))
         
     }
-    delete=() =>{
-        console.log("fui chamado")
-        this.setState({videoInfo:{}})
+    deleteVideo = () => {    
+        alert(this.state.videoInfo[0].id+this.props.userId);
+        /* this.props.deleteVideo(ID)
+        .then(() =>{alert("Video Deletado com Sucesso")})
+        .catch(() => alert("Não Foi Possível apagar o vídeo, por favor tente mais tarde")) */
     }
+
     selectId(id) {
         this.props.selectID(id);
     }
     renderList() {
-        console.log(this.props)
-        console.log(this.state)
+        const currentId = this.state.videoInfo[0].id;
         return( 
              <React.Fragment key={this.state.videoInfo[0].id}>
                 <div className="py-2">
@@ -45,8 +47,7 @@ class SingleElement extends React.Component {
                                     <button onClick={()=>this.selectId(this.state.videoInfo[0].id)} type="button" className="btn btn-danger mx-3">Select</button>
                                     <Link to={`/videoDetail/${this.state.videoInfo[0].id}`}><button type="button" className="btn btn-danger mx-3">Detail </button></Link>
                                     <VideoDelete 
-                                        videoId={this.state.videoInfo[0].id}
-                                        videoDelete= {() => this.delete()}
+                                        onDelete={this.deleteVideo.bind(this)}
                                     />                                   
                                 </div>
                             </div>
@@ -66,6 +67,10 @@ class SingleElement extends React.Component {
         }
     }
 }
-
+const mapStateToProps = (state) => {
+    return {
+        userId:state.authState.userId
+    }
+}
  
-export default connect(null ,{selectID})(SingleElement) ;
+export default connect(mapStateToProps ,{selectID})(SingleElement) ;

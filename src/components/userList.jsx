@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {selectID} from '../actions';
-import {Link} from 'react-router-dom';
 import {fetchVideoList} from '../actions';
 import SingleElement from './SingleElement';
 import VideoPlayer from './VideoPlayer';
 import NeedLogin from './NeedLogin';
+import {deleteVideo} from '../actions'
 
 class YoutubeList extends React.Component{
     componentDidMount() {
@@ -15,7 +15,6 @@ class YoutubeList extends React.Component{
     selectId(id) {
         this.props.selectID(id);
     }
-
     renderList = () => {
         return this.props.userList.map(
             (video) => {
@@ -28,6 +27,8 @@ class YoutubeList extends React.Component{
         );
     }
     render(){
+        alert('renderizei')
+        console.log(this.props)
         if(!this.props.userId){
             return<div><NeedLogin/></div>
         }else if(this.props.userList.length === 0){
@@ -54,4 +55,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {selectID, fetchVideoList})(YoutubeList)
+export default connect(mapStateToProps, {selectID, fetchVideoList,deleteVideo})(YoutubeList)

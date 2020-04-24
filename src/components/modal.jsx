@@ -1,8 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 const Modal = (props) => {
-  return ReactDOM.createPortal(
+  return(
       <div
         className="modal fade"
         id="exampleModal"
@@ -35,15 +34,14 @@ const Modal = (props) => {
               >
                 {props.btncancel}
               </button>
-              <button onClick= {props.onClick} type="button" className="btn btn-primary"
+              <button onClick= {props.onDelete} type="button" className="btn btn-primary"
               data-dismiss="modal">
                 {props.btnaction}
               </button>
             </div>
           </div>
         </div>
-      </div>,
-    document.querySelector("#modal")
+      </div>
   );
 };
 

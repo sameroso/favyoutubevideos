@@ -7,13 +7,11 @@ import {addVideo} from '../actions';
 
 class YoutubeList extends React.Component{
     addVideo = (index) => {
-        console.log(this.props.videosFromYoutube.items[index]);
         this.props.addVideo(this.props.userId,this.props.videosFromYoutube.items[index].id.videoId)
         .then(()=> alert("Video Adicionado com Sucesso"))
         .catch(()=>alert("não foi possível adicionar o video"))
     }
     renderbutton(index) {
-        console.log(this.props)
         if(!this.props.isSignedIn){
             return null
         }else{
