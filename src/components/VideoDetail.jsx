@@ -24,6 +24,8 @@ class VideoDetail extends React.Component{
     }
     addVideo = () => {
         this.props.addVideo(this.props.userId,this.props.video.items[0].id)
+        .then(()=> alert("Video Adicionado com Sucesso"))
+        .catch(()=>alert("não foi possível adicionar o video"))
     }
     render() {
         if(!this.props.video){

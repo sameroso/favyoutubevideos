@@ -40,12 +40,12 @@ class SingleElement extends React.Component {
                             </div>
                             <div className="row d-flex">
                                 <div className="mx-auto">
-                                    <button onClick={()=>this.selectId(this.state.videoInfo[0].id)} type="button" class="btn btn-danger mx-3">Select</button>
-                                    <Link to={`/videoDetail/${this.state.videoInfo[0].id}`}><button type="button" class="btn btn-danger mx-3">Detail </button></Link>
+                                    <button onClick={()=>this.selectId(this.state.videoInfo[0].id)} type="button" className="btn btn-danger mx-3">Select</button>
+                                    <Link to={`/videoDetail/${this.state.videoInfo[0].id}`}><button type="button" className="btn btn-danger mx-3">Detail </button></Link>
                                     <VideoDelete 
+                                        className="btn btn-danger mx-3"
                                         videoId={this.state.videoInfo[0].id}
-                                        videoDelete={this.delete}
-                                    />
+                                    />                                   
                                 </div>
                             </div>
                         </div>

@@ -51,7 +51,13 @@ export const fetchVideoList = () => async dispatch=>{
 }
 
 export const deleteVideo = (videoId) => async dispatch=>{
-    await jsonServer.delete(`/ID/${videoId}*`)
-   dispatch({type:"VIDEO_DELETE", payload:videoId})
+    const response = await jsonServer.delete(`/ID/${videoId}*`)
+    if(response.status === 200){
+        dispatch({type:"REQ_STATUS_SUCESS"})
+    }else{
+        dispatch({type:"REQ_STATUS_FAILED"})
+    } 
+
+    dispatch({type:"VIDEO_DELETE", payload:videoId})
 }
 

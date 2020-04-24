@@ -10,17 +10,23 @@ class StreamDelete extends React.Component {
     deleteClick = (deleteVideo,id) => {
       deleteVideo(id)
       .then(
-        this.props.videoDelete()
+        ()=>{
+          if(this.props.reqStatus){
+            alert("Video Deletado com Sucesso")
+            this.props.videoDelete()
+          }
+        }
       )
-      .catch(console.log("erro"))
+      .then(history.push("/mylist"))
+      .catch(() => alert("Não Foi Possível apagar o vídeo, por favor tente mais tarde"))
     }
   render() {
     console.log(this.state)
       return (
-        <div>
+        <React.Fragment>
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-outline-success"
             data-toggle="modal"
             data-target="#exampleModal"
           >
@@ -34,7 +40,7 @@ class StreamDelete extends React.Component {
           btnaction="Delete"
           description="Deseja realmente deletar o vídeo?"
           />
-        </div>
+        </React.Fragment>
       );
 
   }
@@ -42,6 +48,7 @@ class StreamDelete extends React.Component {
 const mapStateToProps = (state) => {
     return {
         userId: state.authState.userId,
+        reqStatus: state.reqStatus
     };
 }
 export default connect(mapStateToProps, {deleteVideo})(StreamDelete);
