@@ -6,22 +6,20 @@ import history from '../history';
 
 
 
-class StreamDelete extends React.Component {
+class VideoDelete extends React.Component {
     deleteClick = (deleteVideo,id) => {
       deleteVideo(id)
       .then(
         ()=>{
-          if(this.props.reqStatus){
-            alert("Video Deletado com Sucesso")
-            this.props.videoDelete()
-          }
+          this.props.videoDelete()
+          
         }
       )
-      .then(history.push("/mylist"))
+      .then(() =>{alert("Video Deletado com Sucesso")})
       .catch(() => alert("Não Foi Possível apagar o vídeo, por favor tente mais tarde"))
     }
   render() {
-    console.log(this.state)
+    console.log(this.props)
       return (
         <React.Fragment>
           <button
@@ -34,7 +32,7 @@ class StreamDelete extends React.Component {
           </button>
           <Modal 
           title= "Deseja deletar?"
-          onClick = {() => this.deleteClick(this.props.deleteVideo,(this.props.videoId+this.props.userId))}
+          onClick = {()=>this.deleteClick(this.props.deleteVideo,(this.props.videoId+this.props.userId))}
           message="quer deletar mesmo cuzao" 
           btncancel="Cancelar" 
           btnaction="Delete"
@@ -51,4 +49,4 @@ const mapStateToProps = (state) => {
         reqStatus: state.reqStatus
     };
 }
-export default connect(mapStateToProps, {deleteVideo})(StreamDelete);
+export default connect(mapStateToProps, {deleteVideo})(VideoDelete);

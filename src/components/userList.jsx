@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {fetchVideoList} from '../actions';
 import SingleElement from './SingleElement';
 import VideoPlayer from './VideoPlayer';
+import NeedLogin from './NeedLogin';
 
 class YoutubeList extends React.Component{
     componentDidMount() {
@@ -14,6 +15,7 @@ class YoutubeList extends React.Component{
     selectId(id) {
         this.props.selectID(id);
     }
+
     renderList = () => {
         return this.props.userList.map(
             (video) => {
@@ -27,7 +29,7 @@ class YoutubeList extends React.Component{
     }
     render(){
         if(!this.props.userId){
-            return<div>you need to login</div>
+            return<div><NeedLogin/></div>
         }else if(this.props.userList.length === 0){
             return(
                 <div>You have no videos on this list</div>

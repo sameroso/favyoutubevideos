@@ -20,12 +20,14 @@ class SingleElement extends React.Component {
         
     }
     delete=() =>{
+        console.log("fui chamado")
         this.setState({videoInfo:{}})
     }
     selectId(id) {
         this.props.selectID(id);
     }
     renderList() {
+        console.log(this.props)
         console.log(this.state)
         return( 
              <React.Fragment key={this.state.videoInfo[0].id}>
@@ -43,8 +45,8 @@ class SingleElement extends React.Component {
                                     <button onClick={()=>this.selectId(this.state.videoInfo[0].id)} type="button" className="btn btn-danger mx-3">Select</button>
                                     <Link to={`/videoDetail/${this.state.videoInfo[0].id}`}><button type="button" className="btn btn-danger mx-3">Detail </button></Link>
                                     <VideoDelete 
-                                        className="btn btn-danger mx-3"
                                         videoId={this.state.videoInfo[0].id}
+                                        videoDelete= {() => this.delete()}
                                     />                                   
                                 </div>
                             </div>

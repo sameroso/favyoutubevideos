@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import GoogleAuth from './googleLogin'
+import GoogleAuth from './GoogleLogin'
 
 class Header extends React.Component {
     render() {
