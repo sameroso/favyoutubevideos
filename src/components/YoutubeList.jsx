@@ -31,13 +31,12 @@ class YoutubeList extends React.Component{
     renderList = () => {
         return this.props.videosFromYoutube.items.map(
             (video,index) => {
-                console.log(index)
                 return (
                     <React.Fragment key={video.id.videoId}>
                         <div className="py-2">
                             <div className="py-3 row custom-border">
                                 <div className="col-12 col-md-6 col-lg-4 mx-auto d-flex pb-3">
-                                    <img className="mx-auto" src={video.snippet.thumbnails.medium.url}/>
+                                    <img className="mx-auto" src={video.snippet.thumbnails.medium.url} alt={video.id.videoId}/>
                                 </div>
                                 <div className="col-12 col-md-6 col-lg-8 mx-auto my-auto">
                                     <div className="row d-flex">
@@ -46,8 +45,8 @@ class YoutubeList extends React.Component{
                                     <div className="row d-flex">
                                         <div className="mx-auto">
                                             {this.renderbutton(index)}
-                                            <button onClick={()=>this.selectId(video.id.videoId)} type="button" class="btn btn-danger mx-3">Select</button>
-                                            <Link to={`/videoDetail/${video.id.videoId}`}><button type="button" class="btn btn-danger mx-3">Detail </button></Link>
+                                            <button onClick={()=>this.selectId(video.id.videoId)} type="button" className="btn btn-danger mx-3">Select</button>
+                                            <Link to={`/videoDetail/${video.id.videoId}`}><button type="button" className="btn btn-danger mx-3">Detail </button></Link>
                                         </div>
                                     </div>
                                 </div>

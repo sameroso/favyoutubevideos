@@ -5,6 +5,7 @@ import {fetchVideoList} from '../actions';
 import SingleElement from './SingleElement';
 import VideoPlayer from './VideoPlayer';
 import NeedLogin from './NeedLogin';
+import NoVideos from './NoVideos';
 
 class YoutubeList extends React.Component{
     componentDidMount() {
@@ -16,11 +17,11 @@ class YoutubeList extends React.Component{
         this.props.selectID(id);
     }
     renderList = () => {
-        console.log(this.props)
         return this.props.userList.map(
             (video) => {
                 return (
                     <SingleElement 
+                        key={(video.videoId+this.props.userId)}
                         videoId={video.videoId}
                     />
                 );
@@ -32,7 +33,7 @@ class YoutubeList extends React.Component{
             return<div><NeedLogin/></div>
         }else if(this.props.userList.length === 0){
             return(
-                <div>You have no videos on this list</div>
+                <div><NoVideos/></div>
             );
         }else{
             return(
@@ -46,9 +47,8 @@ class YoutubeList extends React.Component{
 }
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
-        userList: Object.values(state.userList).filter((el) => el.userId == state.authState.userId), 
+        userList: Object.values(state.userList).filter((el) => el.userId === state.authState.userId), 
         userId:state.authState.userId,
         idSelected: state.idSelectedVideo
     }

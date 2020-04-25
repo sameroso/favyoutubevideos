@@ -7,9 +7,9 @@ class Header extends React.Component {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <a className="navbar-brand" href="#">
+                    <Link className="navbar-brand" to="/">
                         My Youtube List
-                    </a>
+                    </Link>
                     <button
                         className="navbar-toggler"
                         type="button"
