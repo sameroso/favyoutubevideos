@@ -28,7 +28,6 @@ class YoutubeList extends React.Component{
         );
     }
     render(){
-        alert("userlist renderizada")
         if(!this.props.userId){
             return<div><NeedLogin/></div>
         }else if(this.props.userList.length === 0){
