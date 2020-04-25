@@ -4,7 +4,7 @@ const Modal = (props) => {
   return(
       <div
         className="modal fade"
-        id="exampleModal"
+        id={`exampleModal${props.ID}`}
         tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"

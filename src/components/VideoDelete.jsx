@@ -1,8 +1,6 @@
 import React from "react";
 import Modal from "./modal";
 import {connect} from 'react-redux';
-import history from '../history';
-
 
 
 class VideoDelete extends React.Component {
@@ -13,11 +11,12 @@ class VideoDelete extends React.Component {
             type="button"
             className="btn btn-outline-success"
             data-toggle="modal"
-            data-target="#exampleModal"
+            data-target={`#exampleModal${this.props.ID}`}
           >
             Delete
           </button>
-          <Modal 
+          <Modal
+          ID={this.props.ID} 
           title= "Deseja deletar?"
           onDelete={this.props.onDelete}
           message="Deseja realmente deletar o video?" 

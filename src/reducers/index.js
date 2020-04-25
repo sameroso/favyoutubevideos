@@ -6,7 +6,6 @@ import idSelectedVideoReducer from './idSelectedVideoReducer';
 import youtubeFetchSingleVideo from './youtubeFetchSingleVideo';
 import AuthState from './authState';
 import userList from './userList';
-import videoCurrentDelete from './videoCurrentDeleteReducer';
 
 export default combineReducers({
     authState: AuthState,

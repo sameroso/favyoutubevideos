@@ -5,17 +5,18 @@ import {fetchVideoList} from '../actions';
 import SingleElement from './SingleElement';
 import VideoPlayer from './VideoPlayer';
 import NeedLogin from './NeedLogin';
-import {deleteVideo} from '../actions'
 
 class YoutubeList extends React.Component{
     componentDidMount() {
         this.props.fetchVideoList()
         this.props.selectID("");
     }
+    
     selectId(id) {
         this.props.selectID(id);
     }
     renderList = () => {
+        console.log(this.props)
         return this.props.userList.map(
             (video) => {
                 return (
@@ -27,8 +28,7 @@ class YoutubeList extends React.Component{
         );
     }
     render(){
-        alert('renderizei')
-        console.log(this.props)
+        alert("userlist renderizada")
         if(!this.props.userId){
             return<div><NeedLogin/></div>
         }else if(this.props.userList.length === 0){
@@ -55,4 +55,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {selectID, fetchVideoList,deleteVideo})(YoutubeList)
+export default connect(mapStateToProps, {selectID, fetchVideoList})(YoutubeList)
