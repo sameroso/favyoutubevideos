@@ -6,7 +6,7 @@ import {createBrowserHistory} from 'history';
 
 import SearchVideos from './SearchVideos'
 import VideoDetail from './VideoDetail';
-import userList from './userList';
+import UserList from './UserList';
 
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
           <Header/>
           <Route path="/" exact component={SearchVideos}></Route>
           <Route path="/videoDetail/:id" exact component={VideoDetail}></Route>
-          <Route path="/mylist" exact component={userList}></Route>
+          <Route path="/mylist" exact component={UserList}></Route>
       </Router>
     );
 };

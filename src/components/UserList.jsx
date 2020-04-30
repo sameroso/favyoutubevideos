@@ -8,9 +8,10 @@ import VideoPlayer from './VideoPlayer';
 import NeedLogin from './NeedLogin';
 import NoVideos from './NoVideos';
 
-function userList ({selectID, fetchVideoList,userList,userId,idSelected}){
+function UserList ({selectID, fetchVideoList,userList,userId,idSelected}){
     
     const renderList = () => {
+        
         return userList.map(
             (video) => {
                 return (
@@ -53,4 +54,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {selectID, fetchVideoList})(userList)
+export default connect(mapStateToProps, {selectID, fetchVideoList})(UserList)
