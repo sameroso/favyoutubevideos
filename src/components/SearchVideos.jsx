@@ -7,21 +7,16 @@ import YoutubeList from './YoutubeList';
 import VideoPlayer from './VideoPlayer'
 
 
-class SearchVideos extends React.Component{
-    componentDidMount(){
-        
-    }
-    render() {
-        return(
-            <React.Fragment>
-                <SearchBar/>
-                <VideoPlayer
-                videoId={this.props.videoId} 
-                />
-                <YoutubeList/>
-            </React.Fragment>
-        );
-    }
+const SearchVideos = (props) =>{
+    return(
+        <React.Fragment>
+            <SearchBar/>
+            <VideoPlayer
+            videoId={props.videoId} 
+            />
+            <YoutubeList/>
+        </React.Fragment>
+    );
 }
 
 const mapStateToProps = (state) => {

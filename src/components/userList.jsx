@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react';
 import {connect} from 'react-redux';
 import {selectID} from '../actions';
 import {fetchVideoList} from '../actions';
@@ -7,43 +8,41 @@ import VideoPlayer from './VideoPlayer';
 import NeedLogin from './NeedLogin';
 import NoVideos from './NoVideos';
 
-class YoutubeList extends React.Component{
-    componentDidMount() {
-        this.props.fetchVideoList()
-        this.props.selectID("");
-    }
+function userList ({selectID, fetchVideoList,userList,userId,idSelected}){
     
-    selectId(id) {
-        this.props.selectID(id);
-    }
-    renderList = () => {
-        return this.props.userList.map(
+    const renderList = () => {
+        return userList.map(
             (video) => {
                 return (
                     <SingleElement 
-                        key={(video.videoId+this.props.userId)}
+                        key={(video.videoId+userId)}
                         videoId={video.videoId}
                     />
                 );
             }
         );
     }
-    render(){
-        if(!this.props.userId){
-            return<div><NeedLogin/></div>
-        }else if(this.props.userList.length === 0){
-            return(
-                <div><NoVideos/></div>
-            );
-        }else{
-            return(
-                <React.Fragment>
-                    <VideoPlayer videoId={this.props.idSelected}/>
-                    <div className="container">{this.renderList()}</div>
-                </React.Fragment>
-            );
-        }
+    useEffect(()=>{
+        fetchVideoList()
+        selectID("");
+    },[]) 
+
+    if(!userId){
+        return<div><NeedLogin/></div>
+    }else if(userList.length === 0){
+        return(
+            <div><NoVideos/></div>
+        );
+    }else{
+        return(
+            <React.Fragment>
+                <VideoPlayer videoId={idSelected}/>
+                <div className="container">{renderList()}</div>
+            </React.Fragment>
+        );
     }
+    
+
 }
 
 const mapStateToProps = state => {
@@ -54,4 +53,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {selectID, fetchVideoList})(YoutubeList)
+export default connect(mapStateToProps, {selectID, fetchVideoList})(userList)
