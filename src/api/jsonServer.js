@@ -1,8 +1,5 @@
-import axios from 'axios';
+import axios from "axios";
 
-/* export default axios.create({
-    baseURL:"http://localhost:3001"
-}) */
- export default axios.create({
-    baseURL:"https://sheet.best/api/sheets/ba5c5597-0b59-4048-9443-6b90274ca07e"
-}) 
+export default axios.create({
+  baseURL: "https://sheet.best/api/sheets/ba5c5597-0b59-4048-9443-6b90274ca07e",
+});

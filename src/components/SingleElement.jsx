@@ -7,19 +7,6 @@ import { connect } from "react-redux";
 import VideoDelete from "./VideoDelete";
 import { deleteVideo } from "../actions";
 
-const useFetchVideo = () => {
-    useEffect(()=>{(youTube
-        .get(`/videos`, {
-            params: {
-                key: "AIzaSyA821gpMB-DbTr_v2CUS4X4HPucT-9HLcY",
-                part: "snippet",
-                id: this.props.videoId,
-            },
-        })
-        .then((response) => this.setState({ videoInfo: response.data.items })))()},
-        [])
-}
-
 
 class SingleElement extends React.Component {
     state = { videoInfo: {} };
