@@ -4,6 +4,8 @@ import { selectID } from "../actions";
 import { Link } from "react-router-dom";
 import "./YoutubeList.css";
 import { addVideo } from "../actions";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class YoutubeList extends React.Component {
   addVideo = (index) => {
@@ -12,8 +14,27 @@ class YoutubeList extends React.Component {
         this.props.userId,
         this.props.videosFromYoutube.items[index].id.videoId
       )
-      .then(() => alert("Video Adicionado com Sucesso"))
-      .catch(() => alert("não foi possível adicionar o video"));
+      .then(() =>
+        toast.success("Vídeo adicionado com sucesso!", {
+          position: "top-right",
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        })
+      )
+      .catch(() =>
+        toast.error(
+          "O video não pode ser adicionado, por favor tente mais tarde!",
+          {
+            position: "top-right",
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          }
+        )
+      );
   };
   renderbutton(index) {
     if (!this.props.isSignedIn) {
