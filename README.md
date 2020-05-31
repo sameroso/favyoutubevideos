@@ -27,7 +27,7 @@ Essa aplicação pode ser acessada em: https://optimistic-snyder-e9a7d8.netlify.
 * Design responsivo para mobile
 
 
-A página funciona como uma single page application, em que recebe dados em formato json do google docs e modela dinamicamente a página no frontend para que se tenha uma UI agradável ao usuário.
+A página funciona como uma single page application, em que recebe e envia dados em formato json do google docs e modela dinamicamente a página no frontend para que se tenha uma UI agradável ao usuário.foi usada também a api do youtube para a busca de vídeos.
 
 
 ## :telephone_receiver: Contato
